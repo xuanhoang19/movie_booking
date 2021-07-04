@@ -1,0 +1,434 @@
+
+.cont_ticket 
+	width: 100%
+	min-height: 100px
+	background: #f9f6ec
+	&_Area 
+		width: 980px
+		min-height: 100px
+		margin: 0 auto
+		padding-top: 30px
+
+.ticket_step 
+	min-height: 300px
+	background: #ffffff
+	border-top: 2px solid #23333b
+
+.ticket_left 
+	float: left
+	width: 629px
+
+.theater_header 
+	overflow: hidden
+	height: 59px
+	padding: 0 25px 0 20px
+	line-height: 59px
+	border-bottom: 1px solid #dedede
+	dt 
+		float: left
+		font-size: 20px
+		padding: 0 0 0 10px
+		font-weight: bold
+		color: #231f20
+
+.ticket_My 
+	overflow: hidden
+	height: 50px
+	padding-left: 20px
+	border-bottom: 1px solid #dedede
+	dt 
+		float: left
+		color: #231f20
+		font-size: 14px
+		padding-left: 10px
+		line-height: 50px
+		font-weight: bold
+	
+	dd 
+		overflow: hidden
+		float: right
+		line-height: 50px
+		.txtCiadd 
+			float: left
+			font-size: 13px
+			color: #777777
+			padding-right: 20px
+
+.theater_list 
+	overflow: hidden
+	padding-bottom: 20px
+	li:first-child 
+		background: none
+		padding-left: 0px
+		margin-left: 10px
+	
+	li 
+		float: left
+		font-size: 14px
+		padding: 0 20px
+		background: url("https://www.lottecinemavn.com/LCHS/Image/Bg/bg_theater_line.gif") no-repeat left center
+		a.on 
+			font-weight: bold
+			span 
+				display: inline-block
+				padding-left: 10px
+				background: url("https://www.lottecinemavn.com/LCHS/Image/Bullet/bullet02.gif") no-repeat left center
+				
+		a 
+			color: #231f20
+
+.tab_srcoll 
+	height: 415px
+	padding-left: 10px
+	overflow-y: auto
+
+.theater_zone 
+	position: relative
+
+.area_list
+    padding-left: 0
+    margin-left: 20px
+
+    li a 
+        overflow: hidden
+        display: table-cell
+        vertical-align: middle
+        width: 129px
+        height: 40px
+        border: 1px solid #efefef
+        background: #efefef
+        box-sizing: border-box
+        -webkit-box-sizing: border-box
+        -moz-box-sizing: border-box
+        line-height: 16px
+        font-size: 12px
+        color: #666666
+        text-align: center
+        letter-spacing: -1px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.theater_zone li 
+	margin-bottom: 8px
+
+.area_zone > a.on 
+	background: #231f20 url("https://www.lottecinemavn.com/LCHS/Image/Bullet/bullet03.gif") no-repeat 10px center
+	color: #fff!important
+	letter-spacing: -1px
+
+.area_zone > a 
+	display: inline-block
+	width: 150px
+	height: 40px
+	line-height: 40px
+	padding: 0 10px 0 10px
+	color: #666666
+	text-align: left
+	vertical-align: middle
+	overflow: hidden
+	white-space: nowrap
+	text-overflow: ellipsis
+	text-align: center
+
+address, caption, em 
+	font-weight: normal
+	font-style: normal
+
+.blind 
+	overflow: hidden
+	position: absolute
+	left: -9999px 
+	top: -9999px 
+
+.area_cont.on 
+	display: block
+
+.area_cont 
+	display: none
+	position: absolute
+	left: 180px
+	top: 0
+
+.theater_zone > li:after 
+	content: ''
+	display: block
+	clear: both
+
+.area_list 
+	overflow: hidden
+	width: 409px
+	li 
+		float: left
+		margin: 0 0 8px 5px
+		display: table
+	
+
+
+
+
+
+
+
+
+   /// right
+
+
+.ticket_right 
+	float: right
+	width: 350px
+	border-left: 1px solid #c0c0c0
+	box-sizing: border-box
+
+.movie_cont 
+	height: 520px
+	min-height: 520px
+	box-sizing: border-box
+	-webkit-box-sizing: border-box
+	-moz-box-sizing: border-box
+
+.tkMTab 
+	overflow: hidden
+	padding-right: 10px
+	text-align: right
+	border-bottom: 1px solid #dedede
+	li:first-child 
+		background: none
+		padding-left: 0
+	
+	li 
+		display: inline-block
+		font-size: 14px
+		padding-left: 2px
+		background: url("https://www.lottecinemavn.com/LCHS/Image/bg/bg_tkMTab.gif") no-repeat left center
+		&.on a 
+			font-weight: bold
+		
+		a 
+			display: block
+			padding: 0 10px 0 15px
+			color: #231f20
+			height: 50px
+			line-height: 50px
+		
+.movie_list
+    padding-left: 0
+
+.movie_list li 
+	padding: 4px 0
+	a 
+		display: block
+		padding: 9px 10px 9px 25px
+		border: 1px solid #ffffff
+		color: #231f20
+		font-size: 14px
+		line-height: 22px
+		word-break: break-all
+		[class^=grade_] 
+			float: left
+		
+		em 
+			float: left
+			width: 265px
+			display: block
+			overflow: hidden
+			text-overflow: ellipsis
+			white-space: nowrap
+		
+		&:after 
+			content: ''
+			display: block
+			clear: both
+		
+	
+
+.movie_list [class^=grade_] 
+	margin: 0 6px 0 0
+
+[class^=grade_] 
+	display: inline-block
+	overflow: hidden
+	vertical-align: middle
+	width: 20px
+	height: 20px
+	margin-right: 5px
+	text-indent: -99999em
+
+.grade_18 
+	background : url("https://www.lottecinemavn.com/LCHS/Image/Bg/bg_grade_18.png") no-repeat 0 0
+
+address, caption, em 
+	font-weight: normal
+	font-style: normal
+
+.ticket_step:after 
+	content: ''
+	display: block
+	clear: both
+
+
+
+
+
+
+
+
+
+.selectMv
+  width: 980px
+  margin: 0 auto
+  background: #dad2b4
+
+.selectMv_Area
+  overflow: hidden
+  padding: 20px 15px 15px
+  box-sizing: border-box
+
+  .txtdate
+    padding-left: 0px
+
+  dl
+    float: left
+    overflow: hidden
+    font-size: 16px
+    padding-left: 0px
+
+    dt
+      float: left
+      color: #231f20
+      padding-right: 10px
+      height: 30px
+      line-height: 30px
+
+    dd
+      float: left
+      color: #231f20
+      line-height: 30px
+      font-weight: bold
+
+  .txtCin
+    width: 338px
+
+  dl
+    float: left
+    overflow: hidden
+    font-size: 16px
+    padding-left: 0px
+
+  .txtCin dt
+    width: 70px
+    text-align: right
+
+  dl dt
+    float: left
+    color: #231f20
+    padding-right: 10px
+    height: 30px
+    line-height: 30px
+
+  .txtCin dd
+    float: right
+    width: 257px
+
+  dl dd
+    float: left
+    color: #231f20
+    line-height: 30px
+    font-weight: bold
+
+  .listMv
+    overflow: hidden
+    font-size: 13px
+
+    li
+      position: relative
+      word-break: break-all
+      display: inline-block
+      float: left
+      padding: 8px 35px 8px 10px
+      margin: 0 5px 5px 0
+      color: #231f20 !important
+      border: 1px solid #bab093
+      background: #e5e0cb
+      text-align: left
+      line-height: 14px
+      position: relative
+      word-break: break-all
+      display: inline-block
+      float: left
+      padding: 8px 35px 8px 10px
+      margin: 0 5px 5px 0
+      color: #231f20 !important
+      border: 1px solid #bab093
+      background: #e5e0cb
+      text-align: left
+      line-height: 14px
+
+      > a
+        display: inline-block
+        width: 15px
+        height: 15px
+        position: absolute
+        right: 10px
+        top: 50%
+        margin-top: -8px
+        font-size: 0
+        line-height: 0
+
+    overflow: hidden
+    font-size: 13px
+
+  .txtName
+    float: left
+    width: 405px
+
+  dl
+    float: left
+    overflow: hidden
+    font-size: 16px
+    padding-left: 0px
+
+  .txtName dt
+    width: 110px
+    text-align: right
+
+  dl dt
+    float: left
+    color: #231f20
+    padding-right: 10px
+    height: 30px
+    line-height: 30px
+
+  .txtName dd
+    float: left
+    width: 285px
+
+  dl dd
+    float: left
+    color: #231f20
+    line-height: 30px
+    font-weight: bold
+
+  .listMv
+    overflow: hidden
+    font-size: 13px
+
+
+

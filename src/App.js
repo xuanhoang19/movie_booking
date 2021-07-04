@@ -1,25 +1,36 @@
 import logo from './logo.svg';
-import './App.css';
+import './App.sass';
+import { Button, DatePicker } from 'antd';
+import 'antd/dist/antd.css';
+import RouterURL from './router/router';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Footer from './app/pages/footer/footer';
+import Header from './app/pages/header/header';
+
 
 function App() {
+  // return (
+  //   <div className="App">
+  //     <header className="App-header">
+  //     <h1>antd version</h1>
+  //     <Button type="primary">PRESS ME</Button>
+  //     <DatePicker placeholder="select date" />
+  //     </header>
+  //   </div>
+  // );
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div className="App">
+        <Header></Header>
+        <div id="container" class="sub">
+          <RouterURL></RouterURL>
+        </div>
+        <Footer></Footer>
+
+      </div>
+    </Router>
+  )
 }
 
 export default App;
