@@ -6,7 +6,9 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <ConfigProvider locale={frFR}> */}
+      <App />
+    {/* </ConfigProvider> */}
   </React.StrictMode>,
   document.getElementById('root')
 );

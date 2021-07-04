@@ -1,9 +1,33 @@
-import React, { Component, createRef } from 'react';
+import React, { Component, createRef, useState } from 'react';
+import { DatePicker, Space } from 'antd';
+import { Modal, Button } from 'antd';
+import '../../../css/buyticket.sass';
+
+function onChange(date, dateString) {
+    console.log(date, dateString);
+}
 
 export default class BuyTicket extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isModalVisible: false
+        }
     }
+
+    showModal = () => {
+        this.setState({ isModalVisible: true });
+    };
+
+    handleOk = () => {
+        this.setState({ isModalVisible: false });
+
+    };
+
+    handleCancel = () => {
+        this.setState({ isModalVisible: false });
+
+    };
 
     render() {
         return (
@@ -16,6 +40,11 @@ export default class BuyTicket extends Component {
                                     <dl class="theater_header">
                                         <dt class="Lang-LBL0001">Rạp</dt>
                                         <dd class="txt_add"></dd>
+                                        <dt class="date_picker">
+                                            <Space direction="vertical">
+                                                <DatePicker onChange={onChange} />
+                                            </Space>
+                                        </dt>
                                     </dl>
                                     <dl class="ticket_My">
                                         <dt class="Lang-LBL0003">Rạp chiếu phim của tôi</dt>
@@ -198,18 +227,18 @@ export default class BuyTicket extends Component {
                         </div>
                     </div>
                     <strong class="blind" id="time_tab_title">Xem theo rạp chiếu phim</strong>
-                    <div class="time_noData" style={{display: 'none'}}>
+                    <div class="time_noData" style={{ display: 'none' }}>
                         <span class="noData Lang-LBL0027">Kính mời quý khách chọn phim để xem lịch chiếu chi tiết tại rạp</span>
                     </div>
-                    <div class="time_box time_list02" style={{display: 'none'}}>
-                        <div class="time_noData_case1" style={{display: 'none'}}>
+                    <div class="time_box time_list02" style={{ display: 'none' }}>
+                        <div class="time_noData_case1" style={{ display: 'none' }}>
                             <span class="noData Lang-LBL0028">Kính mời quý khách chọn phim để xem lịch chiếu chi tiết tại rạp</span>
                         </div>
                         <div class="time_aType time8021">
                             <h4 class="time_tit">Việt Trì</h4>
                             <dl class="time_line movie10656">
                                 <dt>
-                                    <span class="grade_13">전체</span>BỐ GIÀ <a href="javascript:void(0)" class="btn_detail" title="Xem thông tin chi tiết phim"><img src="/LCHS/Image/Btn/btn_time_view.png" alt="Chi tiết phòng hát" /></a>
+                                    <span class="grade_13">전체</span>BỐ GIÀ <a href="javascript:void(0)" class="btn_detail" title="Xem thông tin chi tiết phim"><img src="https://www.lottecinemavn.com/LCHS/Image/Btn/btn_time_view.png" alt="Chi tiết phòng hát" /></a>
                                 </dt>
                                 <dd class="screen20050100100100 film200">
                                     <ul class="cineD1">
@@ -235,12 +264,12 @@ export default class BuyTicket extends Component {
                         </div>
                     </div>
                     <div class="time_box time_list01">
-                        <div class="time_noData_case1" style={{display: 'none'}}>
+                        <div class="time_noData_case1" style={{ display: 'none' }}>
                             <span class="noData Lang-LBL0028">Kính mời quý khách chọn phim để xem lịch chiếu chi tiết tại rạp</span>
                         </div>
                         <div class="time_aType movie10656">
                             <h4 class="time_tit">
-                                <span class="grade_13">전체</span><em>BỐ GIÀ</em> <a href="javascript:void(0)" class="btn_detail" title="Xem thông tin chi tiết phim"><img src="/LCHS/Image/Btn/btn_time_view.png" alt="Chi tiết phòng hát" /></a>
+                                <span class="grade_13">전체</span><em>BỐ GIÀ</em> <a href="javascript:void(0)" class="btn_detail" title="Xem thông tin chi tiết phim"><img src="https://www.lottecinemavn.com/LCHS/Image/Btn/btn_time_view.png" alt="Chi tiết phòng hát" /></a>
                             </h4>
                             <dl class="time_line cinema8021">
                                 <dt>Việt Trì</dt>
@@ -251,18 +280,65 @@ export default class BuyTicket extends Component {
                                     </ul>
                                     <ul class="theater_time list10656" screendiv="100">
                                         <li>
-                                            <a href="javascript:void(0);" class="time_active t0">
+                                            <a href="javascript:void(0);" class="time_active t0" onClick={this.showModal}>
                                                 <span class="cineD2 brand"> <em>Screen01</em></span><span class="clock">15:00 <span> ~ 17:28</span></span>
                                                 <span class="ppNum"><em class="color_brown" title="Kiểm tra chỗ ngồi của bạn">138</em> / 182 Ghế ngồi</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0);" class="time_active t1">
+                                            <a href="javascript:void(0);" class="time_active t1" onClick={this.showModal}>
                                                 <span class="cineD2 brand"> <em>Screen01</em></span><span class="clock">20:00 <span> ~ 22:28</span></span>
                                                 <span class="ppNum"><em class="color_brown" title="Kiểm tra chỗ ngồi của bạn">138</em> / 182 Ghế ngồi</span>
                                             </a>
                                         </li>
                                     </ul>
+                                    <Modal title="Chọn hàng ghế" visible={this.state.isModalVisible} onOk={this.handleOk} onCancel={this.handleCancel}>
+                                        <Button type="primary" shape="round">
+                                            A1
+                                        </Button>
+                                        <Button type="primary" shape="round">
+                                            A2
+                                        </Button>
+                                        <Button type="primary" shape="round" disabled>
+                                            A3
+                                        </Button>
+                                        <Button type="primary" shape="round">
+                                            A4
+                                        </Button>
+                                        <Button type="primary" shape="round" disabled>
+                                            A5
+                                        </Button>
+                                        <Button type="primary" shape="round">
+                                            A1
+                                        </Button>
+                                        <Button type="primary" shape="round">
+                                            A2
+                                        </Button>
+                                        <Button type="primary" shape="round" disabled>
+                                            A3
+                                        </Button>
+                                        <Button type="primary" shape="round" danger>
+                                            A4
+                                        </Button>
+                                        <Button type="primary" shape="round">
+                                            A5
+                                        </Button>
+                                        <Button type="primary" shape="round">
+                                            A1
+                                        </Button>
+                                        <Button type="primary" shape="round">
+                                            A2
+                                        </Button>
+                                        <Button type="primary" shape="round">
+                                            A3
+                                        </Button>
+                                        <Button type="primary" shape="round">
+                                            A4
+                                        </Button>
+                                        <Button type="primary" shape="round">
+                                            A5
+                                        </Button>
+                                    </Modal>
                                 </dd>
                             </dl>
                         </div>
