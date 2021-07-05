@@ -1,4 +1,6 @@
 import React, { Component, createRef } from 'react';
+import '../../@css_user/index.sass';
+
 
 export default class GiftShop extends Component {
     constructor(props) {

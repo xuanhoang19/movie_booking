@@ -2,6 +2,8 @@ import React, { Component, createRef } from 'react';
 import { Carousel, Button } from 'antd';
 import HomeContent from './homeconent';
 import Footer from '../footer/footer';
+import '../../@css_user/index.sass';
+
 
 const contentStyle = {
     height: '645px',

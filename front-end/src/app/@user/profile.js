@@ -18,7 +18,7 @@ export default class Profile extends Component {
                         <div class="profile_inner">
                             <Tabs defaultActiveKey="1" type="card" size={"large"}>
                                 <TabPane tab="Thông tin" key="1">
-                                    <div class="wrapper">
+                                    <div class="wrapper_profile">
                                         <div class="left">
                                             <img src="https://i.imgur.com/cMy8V5j.png" alt="user" width="100" />
                                             <h4>Alex William</h4>

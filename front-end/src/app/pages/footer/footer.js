@@ -1,4 +1,5 @@
 import React, { Component, createRef } from 'react';
+import '../../@css_user/index.sass';
 
 export default class Footer extends Component {
     constructor(props) {

@@ -22,12 +22,8 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Header></Header>
-        <div id="container" class="sub">
-          <RouterURL></RouterURL>
-        </div>
-        <Footer></Footer>
 
+        <RouterURL></RouterURL>
       </div>
     </Router>
   )
