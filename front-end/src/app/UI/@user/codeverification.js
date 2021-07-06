@@ -1,48 +1,29 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-import { SignIn } from '../../service/auth.service';
 import './css/login.sass';
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: '',
-            password: '',
-            redirectToReferrer: ''
+            code: '',
+            redirectToReferrer: false
         };
-        this.login = this.login.bind(this);
+        this.submit = this.submit.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
-    login() {
+    submit() {
         if (this.state.username && this.state.password) {
-            console.log(this.state.username + "-" + this.state.password);
-
             var model = {
                 email: this.state.username,
                 password: this.state.password
             }
 
-            SignIn(model).then(res => {
-               if(res && res.data) {
-                   if(res.data) {
-                    sessionStorage.setItem('user', JSON.stringify(res.data));
-                   }
-
-                   if(res.data.token) {
-                    sessionStorage.setItem('access_token', res.data.token);
-                   }
-
-                   if(res.data.role == 'admin') {
-                    this.setState({redirectToReferrer : 'admin'});
-                   }
-
-                   if(res.data.role == 'user') {
-                    this.setState({redirectToReferrer : 'user'});
-                   }
-
-               }
+            CodeVerification(model).then(res => {
+                if (res && res.data) {
+                    this.setState({ redirectToReferrer: true });
+                }
             }).catch(error => console.log(error));
         }
     }
@@ -54,22 +35,16 @@ export default class Login extends Component {
     }
 
     render() {
-        if (this.state.redirectToReferrer == 'admin') {
-            return (<Redirect to={'/admin/dashborad'} />)
+        if (this.state.redirectToReferrer == true) {
+            return (<Redirect to={'/login'} />)
         }
-        if (this.state.redirectToReferrer == 'user') {
-            return (<Redirect to={'/'} />)
-        }
-        // if (sessionStorage.getItem('userData')) {
-        //     return (<Redirect to={'/'} />)
-        // }
 
         return (
             <div className="LoginPage">
                 <div id="content">
                     <div class="login_wrap">
                         <div class="login_inner">
-                            <h2 class="login_tit Lang-LBL0005">Đăng nhập</h2>
+                            <h2 class="login_tit Lang-LBL0005">Nhập mã xác minh</h2>
                             <div class="login_top">
                                 <section>
                                     <dl class="tabdl_login" id="jq-tabdl_login">
@@ -77,22 +52,19 @@ export default class Login extends Component {
                                             <div class="clear_fix">
                                                 <div class="login_left">
                                                     <ul class="etc_list">
-                                                        <li class="Lang-LBL5021">Vui lòng đăng nhập để nhận nhiều ưu đãi dành riêng cho thành viên của Lotte Cinema.</li>
+                                                        <li class="Lang-LBL5021">Vui lòng nhập mã code để trở thànhthành viên của Lotte Cinema.</li>
                                                     </ul>
                                                     <div class="login_box">
                                                         <span>
                                                             <label for="userId" class="Lang-LBL0121">ID</label>
-                                                            <input onChange={this.onChange} type="text" id="userId" name="username" maxlength="50" onkeydown="keyDownMemberForm(event);" placeholder="Vui lòng nhập địa chỉ Email" /></span>
-                                                        <span>
-                                                            <label for="userPassword" class="Lang-LBL0085">Mật khẩu</label>
-                                                            <input onChange={this.onChange} type="password" id="userPassword" name="password" maxlength="20" onkeydown="keyDownMemberForm(event);" placeholder="Vui lòng nhập mật khẩu" /></span>
-
+                                                            <input onChange={this.onChange} type="text" id="userId" name="code" maxlength="50" placeholder="Nhập mã code" />
+                                                        </span>
                                                     </div>
                                                     <div class="login_find">
                                                         <span>
                                                             <input type="checkbox" id="saveId" name="saveId" value="Y" onkeydown="keyDownEnterEventNo(event);" /><label for="saveId" class="Lang-LBL5024">Lưu ID</label></span>
 
-                                                        <input onClick={this.login} type="button" class="btn_login Lang-LBL0005" value="Đăng nhập" id="btnMember" style={{ cursor: 'pointer' }} title="login" />
+                                                        <input onClick={this.submit} type="button" class="btn_login Lang-LBL0005" value="Xác nhận" id="btnMember" style={{ cursor: 'pointer' }} title="submit" />
                                                         <span class="no_bg"><a href="javascript:void(0);" target="_blank" title="Tìm ID Đã mở cửa sổ mới" id="aFindId" class="Lang-LBL5025">Tìm ID</a></span>
                                                         <span><a href="javascript:void(0);" target="_blank" title="Tìm mật khẩu Đã mở cửa sổ mới" id="aFindPassword" class="Lang-LBL5026">Tìm mật khẩu</a></span>
                                                     </div>

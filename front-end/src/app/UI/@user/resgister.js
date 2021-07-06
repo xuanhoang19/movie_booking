@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-import { message } from 'antd';
+import { message as toastr} from 'antd';
 import './css/login.sass';
+import { SignUp } from '../../service/auth.service';
 
 export default class Resgister extends Component {
     constructor(props) {
@@ -10,7 +11,6 @@ export default class Resgister extends Component {
             username: '',
             userpassword: '',
             userpassword2: '',
-            username: '',
             userphone: '',
             usergmail: '',
             redirectToReferrer: false
@@ -21,10 +21,28 @@ export default class Resgister extends Component {
 
     register(){
         if(this.state.userpassword !== this.state.userpassword2) {
-            message.error('Mật khẩu không trùng nhau.');
+            toastr.error('Mật khẩu không trùng nhau.');
         }
-        else if(this.state.name && this.state.username && this.state.password && this.state.gmail && this.state.phone && this.state.address){
-           
+        else if(this.state.userpassword && this.state.usergmail && this.state.username){
+            var model = {
+                name: this.state.username,
+                email: this.state.usergmail,
+                password: this.state.userpassword,
+            };
+
+            SignUp(model).then(res => {
+                toastr.success("Đăng ký thành công.")
+                this.setState({redirectToReferrer : true});
+            }).catch(error => { 
+                var message = "Đã xảy ra lỗi, chưa thể xác định.";
+                if(error && error.response && error.response.data && error.response.data.message) {
+                    message = error.response.data.message;
+                    if(message == "user-exist") {
+                        message = "Gmail đã tồn tại.";
+                    }
+                }
+                toastr.error(message);
+            });
         }
     }
 
@@ -59,7 +77,7 @@ export default class Resgister extends Component {
                                                         </span>
                                                         <span>
                                                             <label for="userEmail" class="Lang-LBL0121">Email</label>
-                                                            <input onChange={this.onChange} type="text" id="userEmail" name="useremail" maxlength="50" placeholder="Nhập địa chỉ Email" />
+                                                            <input onChange={this.onChange} type="text" id="userEmail" name="usergmail" maxlength="50" placeholder="Nhập địa chỉ Email" />
                                                         </span>
                                                         <span>
                                                             <label for="" class="Lang-LBL0121">Ngày sinh</label>

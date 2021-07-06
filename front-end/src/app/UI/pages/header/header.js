@@ -8,6 +8,14 @@ export default class Header extends Component {
         this.state = {
             currentTab: "film",
             depth_03: -1,
+            userLogin: null,
+        }
+    }
+
+    componentDidMount() {
+        var user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : null;
+        if (user) {
+            this.setState({ userLogin: user });
         }
     }
 
@@ -52,9 +60,24 @@ export default class Header extends Component {
                         <ul>
                             <li></li>
                             <li>
-                                <Link to="/login">
-                                    <a id="lbtnLogin" title="Đăng nhập" href="#" onClick={(e) => this.onTabMenu("login")}>Đăng nhập</a>
-                                </Link>
+                                {
+                                    this.state.userLogin ? (
+                                        <div>
+                                            <Link to="/profile">
+                                                <a id="lbtnLogin" title={this.state.userLogin.name} href="#">
+                                                    {this.state.userLogin.name}
+                                                    </a>
+                                            </Link>
+                                            <Link to="/logout">
+                                                <a id="lbtnLogin" title="Đăng nhập" href="#">Đăng xuất</a>
+                                            </Link>
+                                        </div>
+                                    ) : (
+                                        <Link to="/login">
+                                            <a id="lbtnLogin" title="Đăng nhập" href="#">Đăng nhập</a>
+                                        </Link>
+                                    )
+                                }
                             </li>
 
                             <li><a href="" id="topMembership" title="Thẻ thành viên">Thẻ thành viên</a></li>
