@@ -1,7 +1,7 @@
 import React, { Component, createRef, useState } from 'react';
 import { DatePicker, Space } from 'antd';
 import { Modal, Button } from 'antd';
-import '../../../css/buyticket.sass';
+import '../../css/buyticket.sass';
 
 function onChange(date, dateString) {
     console.log(date, dateString);

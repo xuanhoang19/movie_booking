@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react';
-import '../../../css/cemina.sass';
+import '../../css/cemina.sass';
 
 
 export default class Cinema extends Component {

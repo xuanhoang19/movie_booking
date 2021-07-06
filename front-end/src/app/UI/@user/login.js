@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-
-
+import { SignIn } from '../../service/auth.service';
 import './css/login.sass';
 
 export default class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username : '',
+            username: '',
             password: '',
             redirectToReferrer: false
         };
@@ -16,15 +15,26 @@ export default class Login extends Component {
         this.onChange = this.onChange.bind(this);
     }
 
-    login(){
-        if(this.state.username && this.state.password){
-           console.log(this.state.username + "-" + this.state.password);
+    login() {
+        if (this.state.username && this.state.password) {
+            console.log(this.state.username + "-" + this.state.password);
+
+            var model = {
+                email: this.state.username,
+                password: this.state.password
+            }
+
+            SignIn(model).then(res => {
+                debugger;
+                sessionStorage.setItem('user', JSON.stringify(res));
+                this.setState({redirectToReferrer : true});
+            }).catch(error => console.log(error));
         }
     }
 
-    onChange(e){
+    onChange(e) {
         this.setState({
-            [e.target.name] : e.target.value
+            [e.target.name]: e.target.value
         });
     }
 
@@ -64,7 +74,7 @@ export default class Login extends Component {
                                                         <span>
                                                             <input type="checkbox" id="saveId" name="saveId" value="Y" onkeydown="keyDownEnterEventNo(event);" /><label for="saveId" class="Lang-LBL5024">Lưu ID</label></span>
 
-                                                        <input onClick={this.login} type="button" class="btn_login Lang-LBL0005" value="Đăng nhập" id="btnMember" style={{cursor: 'pointer'}} title="login" />
+                                                        <input onClick={this.login} type="button" class="btn_login Lang-LBL0005" value="Đăng nhập" id="btnMember" style={{ cursor: 'pointer' }} title="login" />
                                                         <span class="no_bg"><a href="javascript:void(0);" target="_blank" title="Tìm ID Đã mở cửa sổ mới" id="aFindId" class="Lang-LBL5025">Tìm ID</a></span>
                                                         <span><a href="javascript:void(0);" target="_blank" title="Tìm mật khẩu Đã mở cửa sổ mới" id="aFindPassword" class="Lang-LBL5026">Tìm mật khẩu</a></span>
                                                     </div>
@@ -78,7 +88,7 @@ export default class Login extends Component {
                             <div class="login_bottom">
                                 <p class="login_etxt Lang-LBL5022">Nếu bạn chưa có tài khoản, bạn có thể đăng ký!</p>
                                 <Link to="/resgister">
-                                    <a href="#" class="btn_join Lang-LBL5023" 
+                                    <a href="#" class="btn_join Lang-LBL5023"
                                         title="Đăng kí tài khoản Đã mở cửa sổ mới" id="aMemberJoin">Đăng kí tài khoản</a>
                                 </Link>
                             </div>

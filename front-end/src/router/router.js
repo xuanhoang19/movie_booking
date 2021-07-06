@@ -1,19 +1,19 @@
 import { BrowserRouter as Router, Switch, Route, BrowserRouter } from "react-router-dom";
 import React, { Component } from 'react';
-import Home from '../app/pages/home/home';
-import GiftShop from '../app/pages/gift shop/giftshop';
-import HomeFilm from "../app/pages/home/homefilm";
-import BuyTicket from "../app/pages/buy ticket/buyticket";
-import Cinema from '../app/pages/cinema/cinema';
-import Promotion from "../app/pages/promotion/promotion";
-import Login from "../app/@user/login";
-import Resgister from "../app/@user/resgister";
-import Profile from "../app/@user/profile";
-import Dashborad from "../app/@admin/dashboard/dashboard";
-import HeaderAdmin from "../app/@admin/header/header_admin";
-import NavAdmin from "../app/@admin/nav/nav_admin";
-import Header from "../app/pages/header/header";
-import Footer from "../app/pages/footer/footer";
+import Home from '../app/UI/pages/home/home';
+import GiftShop from '../app/UI/pages/gift shop/giftshop';
+import HomeFilm from "../app/UI/pages/home/homefilm";
+import BuyTicket from "../app/UI/pages/buy ticket/buyticket";
+import Cinema from '../app/UI/pages/cinema/cinema';
+import Promotion from "../app/UI/pages/promotion/promotion";
+import Login from "../app/UI/@user/login";
+import Resgister from "../app/UI/@user/resgister";
+import Profile from "../app/UI/@user/profile";
+import Dashborad from "../app/UI/@admin/dashboard/dashboard";
+import HeaderAdmin from "../app/UI/@admin/header/header_admin";
+import NavAdmin from "../app/UI/@admin/nav/nav_admin";
+import Header from "../app/UI/pages/header/header";
+import Footer from "../app/UI/pages/footer/footer";
 
 export default class RouterURL extends Component {
     render() {
