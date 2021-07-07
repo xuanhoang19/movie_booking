@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../assets/css/index.css';
-import '../assets/css/material-dashboard.css';
 import '../assets/img/apple-icon.png';
 
 
@@ -14,7 +13,7 @@ export default class HeaderAdmin extends Component {
         return (
             <div>
                 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"></link>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"></link>
                 {/* Navbar */}
                 <nav className="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
                     <div className="container-fluid">

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { actUpdateStateUserLoginRequest } from '../../actions/actions';
 import { SignIn } from '../../service/auth.service';
 import './css/login.sass';
+import {connect} from 'react-redux';
 
-export default class Login extends Component {
+
+class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,24 +30,31 @@ export default class Login extends Component {
             SignIn(model).then(res => {
                if(res && res.data) {
                    if(res.data) {
-                    sessionStorage.setItem('user', JSON.stringify(res.data));
+                    localStorage.setItem('user', JSON.stringify(res.data));
                    }
 
                    if(res.data.token) {
-                    sessionStorage.setItem('access_token', res.data.token);
+                    localStorage.setItem('access_token', res.data.token);
                    }
 
                    if(res.data.role == 'admin') {
+                    this.updateUserLogin();
                     this.setState({redirectToReferrer : 'admin'});
                    }
 
                    if(res.data.role == 'user') {
+                    this.updateUserLogin();
                     this.setState({redirectToReferrer : 'user'});
                    }
 
                }
             }).catch(error => console.log(error));
         }
+    }
+
+    updateUserLogin() {
+        var {dispatch} = this.props;
+        dispatch(actUpdateStateUserLoginRequest());
     }
 
     onChange(e) {
@@ -60,7 +70,7 @@ export default class Login extends Component {
         if (this.state.redirectToReferrer == 'user') {
             return (<Redirect to={'/'} />)
         }
-        // if (sessionStorage.getItem('userData')) {
+        // if (localStorage.getItem('userData')) {
         //     return (<Redirect to={'/'} />)
         // }
 
@@ -82,15 +92,15 @@ export default class Login extends Component {
                                                     <div class="login_box">
                                                         <span>
                                                             <label for="userId" class="Lang-LBL0121">ID</label>
-                                                            <input onChange={this.onChange} type="text" id="userId" name="username" maxlength="50" onkeydown="keyDownMemberForm(event);" placeholder="Vui lòng nhập địa chỉ Email" /></span>
+                                                            <input onChange={this.onChange} type="text" id="userId" name="username" maxlength="50" placeholder="Vui lòng nhập địa chỉ Email" /></span>
                                                         <span>
                                                             <label for="userPassword" class="Lang-LBL0085">Mật khẩu</label>
-                                                            <input onChange={this.onChange} type="password" id="userPassword" name="password" maxlength="20" onkeydown="keyDownMemberForm(event);" placeholder="Vui lòng nhập mật khẩu" /></span>
+                                                            <input onChange={this.onChange} type="password" id="userPassword" name="password" maxlength="20" placeholder="Vui lòng nhập mật khẩu" /></span>
 
                                                     </div>
                                                     <div class="login_find">
                                                         <span>
-                                                            <input type="checkbox" id="saveId" name="saveId" value="Y" onkeydown="keyDownEnterEventNo(event);" /><label for="saveId" class="Lang-LBL5024">Lưu ID</label></span>
+                                                            <input type="checkbox" id="saveId" name="saveId" value="Y" /><label for="saveId" class="Lang-LBL5024">Lưu ID</label></span>
 
                                                         <input onClick={this.login} type="button" class="btn_login Lang-LBL0005" value="Đăng nhập" id="btnMember" style={{ cursor: 'pointer' }} title="login" />
                                                         <span class="no_bg"><a href="javascript:void(0);" target="_blank" title="Tìm ID Đã mở cửa sổ mới" id="aFindId" class="Lang-LBL5025">Tìm ID</a></span>
@@ -117,3 +127,7 @@ export default class Login extends Component {
         );
     }
 }
+
+export default connect(function(state){
+    return { rdcUser : state.rdcUser }
+}) (Login);

@@ -62,7 +62,7 @@ export default class Login extends Component {
                                                     </div>
                                                     <div class="login_find">
                                                         <span>
-                                                            <input type="checkbox" id="saveId" name="saveId" value="Y" onkeydown="keyDownEnterEventNo(event);" /><label for="saveId" class="Lang-LBL5024">Lưu ID</label></span>
+                                                            <input type="checkbox" id="saveId" name="saveId" value="Y" /><label for="saveId" class="Lang-LBL5024">Lưu ID</label></span>
 
                                                         <input onClick={this.submit} type="button" class="btn_login Lang-LBL0005" value="Xác nhận" id="btnMember" style={{ cursor: 'pointer' }} title="submit" />
                                                         <span class="no_bg"><a href="javascript:void(0);" target="_blank" title="Tìm ID Đã mở cửa sổ mới" id="aFindId" class="Lang-LBL5025">Tìm ID</a></span>

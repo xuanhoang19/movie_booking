@@ -76,15 +76,15 @@ export default class Profile extends Component {
                                                 <div class="info_data" style={{ display: 'grid' }}>
                                                     <span>
                                                         <label for="userId" class="Lang-LBL0121">Name</label>
-                                                        <input onChange={this.onChange} type="text" id="userId" name="username" maxlength="50" onkeydown="keyDownMemberForm(event);" placeholder="Vui lòng nhập Tên" />
+                                                        <input onChange={this.onChange} type="text" id="userId" name="username" maxlength="50" placeholder="Vui lòng nhập Tên" />
                                                     </span>
                                                     <span>
                                                         <label for="userId" class="Lang-LBL0121">Email</label>
-                                                        <input onChange={this.onChange} type="text" id="userId" name="username" maxlength="50" onkeydown="keyDownMemberForm(event);" placeholder="Vui lòng nhập địa chỉ Email" />
+                                                        <input onChange={this.onChange} type="text" id="userId" name="username" maxlength="50" placeholder="Vui lòng nhập địa chỉ Email" />
                                                     </span>
                                                     <span>
                                                         <label for="userId" class="Lang-LBL0121">Số điện thoại</label>
-                                                        <input onChange={this.onChange} type="text" id="userId" name="username" maxlength="50" onkeydown="keyDownMemberForm(event);" placeholder="Vui lòng nhập Số điện thoại" />
+                                                        <input onChange={this.onChange} type="text" id="userId" name="username" maxlength="50" placeholder="Vui lòng nhập Số điện thoại" />
                                                     </span>
                                                 </div>
                                             </div>

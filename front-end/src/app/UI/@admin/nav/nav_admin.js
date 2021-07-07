@@ -1,6 +1,5 @@
 import React, { Component, createRef } from 'react';
 import '../assets/css/index.css';
-import '../assets/css/material-dashboard.css';
 import '../assets/img/apple-icon.png';
 
 

@@ -100,7 +100,7 @@ export default class Resgister extends Component {
                                                     </div>
                                                     <div class="login_find">
                                                         <span>
-                                                            <input type="checkbox" id="saveId" name="saveId" value="Y" onkeydown="keyDownEnterEventNo(event);" /><label for="saveId" class="Lang-LBL5024">Lưu ID</label></span>
+                                                            <input type="checkbox" id="saveId" name="saveId" value="Y"/><label for="saveId" class="Lang-LBL5024">Lưu ID</label></span>
 
                                                         <input onClick={this.register} type="button" class="btn_login Lang-LBL0005" value="Đăng ký" id="btnMember" style={{ cursor: 'pointer' }} title="register" />
                                                     </div>

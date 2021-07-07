@@ -14,7 +14,7 @@ const contentStyle = {
 };
 
 function onChange(a, b, c) {
-    console.log(a, b, c);
+    // console.log(a, b, c);
 }
 
 export default class Home extends Component {

@@ -1,22 +1,32 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { actFetchUsersLoginRequest } from '../../../actions/actions';
 import '../../css/header.sass';
+import {connect} from 'react-redux';
 
-export default class Header extends Component {
+
+class Header extends Component {
     constructor(props) {
         super(props);
         this.state = {
             currentTab: "film",
             depth_03: -1,
-            userLogin: null,
+            isUserLogin: false,
         }
+        this.userLogin = this.getUserLogin.bind(this);
     }
 
     componentDidMount() {
-        var user = sessionStorage.getItem("user") ? JSON.parse(sessionStorage.getItem("user")) : null;
+        var user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
         if (user) {
-            this.setState({ userLogin: user });
+            this.getUserLogin();
+            this.setState({ isUserLogin: true });
         }
+    }
+
+    getUserLogin() {
+        var {dispatch} = this.props;
+        dispatch(actFetchUsersLoginRequest());
     }
 
     onTabMenu = (tab) => {
@@ -58,18 +68,19 @@ export default class Header extends Component {
 
                     <div class="luncher">
                         <ul>
-                            <li></li>
+                            <li>
+                            </li>
                             <li>
                                 {
-                                    this.state.userLogin ? (
+                                    this.props.rdcUser && this.props.rdcUser.token ? (
                                         <div>
                                             <Link to="/profile">
-                                                <a id="lbtnLogin" title={this.state.userLogin.name} href="#">
-                                                    {this.state.userLogin.name}
-                                                    </a>
+                                                <a class="mr-1" id="lbtnName" title={this.props.rdcUser.name} href="#">
+                                                    {this.props.rdcUser.name}
+                                                </a>
                                             </Link>
                                             <Link to="/logout">
-                                                <a id="lbtnLogin" title="Đăng nhập" href="#">Đăng xuất</a>
+                                                <a id="lbtnLogout" title="Đăng xuất" href="#">Đăng xuất</a>
                                             </Link>
                                         </div>
                                     ) : (
@@ -310,3 +321,8 @@ export default class Header extends Component {
         );
     }
 }
+
+
+export default connect(function(state){
+    return { rdcUser : state.rdcUser }
+}) (Header);

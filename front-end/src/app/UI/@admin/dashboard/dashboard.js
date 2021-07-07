@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import '../assets/css/index.css';
-import '../assets/css/material-dashboard.css';
 import '../assets/img/apple-icon.png';
-
 
 export default class Dashborad extends Component {
     constructor(props) {
