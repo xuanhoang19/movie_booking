@@ -2,46 +2,32 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import './css/login.sass';
 import { message as toastr } from 'antd';
-import { checkCode } from '../../service/auth.service';
+import { forgetPassword } from '../../service/auth.service';
 
-export default class CodeVerification extends Component {
+export default class ForgetPassword extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            usercode: '',
-            gmail: '',
-            type: null,
+            usergmail: '',
             redirectToReferrer: false
         };
         this.submit = this.submit.bind(this);
         this.onChange = this.onChange.bind(this);
     }
 
-    componentDidMount() {
-        let gmail = sessionStorage.getItem('gmail');
-        if (gmail) {
-            this.setState({ gmail: gmail });
-        }
-
-        let type = sessionStorage.getItem('type'); // forgetpassword || registeraccount
-        if (type) {
-            this.setState({ type: type });
-        }
-    }
-
     submit() {
-        if (this.state.usercode) {
+        if (this.state.usergmail) {
             var model = {
-                email: this.state.usercode,
-                code: this.state.gmail
+                email: this.state.usergmail,
             }
 
-            checkCode(model).then(res => {
-                toastr.success("Đăng ký thành công.");
+            forgetPassword(model).then(res => {
+                toastr.success("Mã code đã được gửi về gmail.");
+                sessionStorage.setItem('type', 'forgetpassword');
                 this.setState({ redirectToReferrer: true });
             }).catch(error => {
                 console.log(error);
-                toastr.success("Đăng ký thất bại.");
+                toastr.error("Thất bại.");
             });
         }
     }
@@ -54,7 +40,7 @@ export default class CodeVerification extends Component {
 
     render() {
         if (this.state.redirectToReferrer == true) {
-            return (<Redirect to={'/login'} />)
+            return (<Redirect to={'/code'} />)
         }
 
         return (
@@ -62,7 +48,7 @@ export default class CodeVerification extends Component {
                 <div id="content">
                     <div class="login_wrap">
                         <div class="login_inner">
-                            <h2 class="login_tit Lang-LBL0005">Nhập mã xác minh</h2>
+                            <h2 class="login_tit Lang-LBL0005">Tìm tài khoản</h2>
                             <div class="login_top">
                                 <section>
                                     <dl class="tabdl_login" id="jq-tabdl_login">
@@ -70,13 +56,12 @@ export default class CodeVerification extends Component {
                                             <div class="clear_fix">
                                                 <div class="login_left">
                                                     <ul class="etc_list">
-                                                        <li class="Lang-LBL5021">Vui lòng nhập mã code để trở thành viên của Lotte Cinema.</li>
-                                                        <li class="Lang-LBL5021">Với gmail: {this.state.gmail}</li>
+                                                        <li class="Lang-LBL5021">Vui lòng nhập gmail của bạn.</li>
                                                     </ul>
                                                     <div class="login_box">
                                                         <span>
-                                                            <label for="userId" class="Lang-LBL0121">Mã code:</label>
-                                                            <input onChange={this.onChange} type="text" id="userId" name="usercode" maxlength="50" placeholder="Nhập mã code" />
+                                                            <label for="userId" class="Lang-LBL0121">Nhập gmail:</label>
+                                                            <input onChange={this.onChange} type="text" id="userId" name="usergmail" maxlength="50" placeholder="Nhập gmail" />
                                                         </span>
                                                     </div>
                                                     <div class="login_find">

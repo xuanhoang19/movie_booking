@@ -31,3 +31,20 @@ export const actUpdateStateUserLogin = (user) => {
         user
     }
 }
+
+export const actUpdateStateUserLogoutRequest = () => {
+    return (dispatch) => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("access_token");
+
+        dispatch(actUpdateStateUserLogout(null));
+    }
+}
+
+export const actUpdateStateUserLogout = (user) => {
+    return {
+        type: actionType.UPDATE_STATE_USER_LOGOUT,
+        user
+    }
+}
+

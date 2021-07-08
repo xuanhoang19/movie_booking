@@ -3,7 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-ro
 import { actUpdateStateUserLoginRequest } from '../../actions/actions';
 import { SignIn } from '../../service/auth.service';
 import './css/login.sass';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { message as toastr } from 'antd';
 
 
 class Login extends Component {
@@ -28,32 +29,43 @@ class Login extends Component {
             }
 
             SignIn(model).then(res => {
-               if(res && res.data) {
-                   if(res.data) {
-                    localStorage.setItem('user', JSON.stringify(res.data));
-                   }
+                if (res && res.data) {
+                    if (res.data) {
+                        localStorage.setItem('user', JSON.stringify(res.data));
+                    }
 
-                   if(res.data.token) {
-                    localStorage.setItem('access_token', res.data.token);
-                   }
+                    if (res.data.token) {
+                        localStorage.setItem('access_token', res.data.token);
+                    }
 
-                   if(res.data.role == 'admin') {
-                    this.updateUserLogin();
-                    this.setState({redirectToReferrer : 'admin'});
-                   }
+                    toastr.error("Đăng nhập thành công.");
 
-                   if(res.data.role == 'user') {
-                    this.updateUserLogin();
-                    this.setState({redirectToReferrer : 'user'});
-                   }
+                    if (res.data.role == 'admin') {
+                        this.updateUserLogin();
+                        this.setState({ redirectToReferrer: 'admin' });
+                    }
 
-               }
-            }).catch(error => console.log(error));
+                    if (res.data.role == 'user') {
+                        this.updateUserLogin();
+                        this.setState({ redirectToReferrer: 'user' });
+                    }
+                }
+            }).catch(error => {
+                console.log(error);
+                var message = "Đăng nhập thất bại.";
+                if(error && error.response && error.response.data && error.response.data.message) {
+                    message = error.response.data.message;
+                    if(message == "user-not-exist") {
+                        message = "Tài khoản không tồn tại.";
+                    }
+                }
+                toastr.error(message);
+            });
         }
     }
 
     updateUserLogin() {
-        var {dispatch} = this.props;
+        var { dispatch } = this.props;
         dispatch(actUpdateStateUserLoginRequest());
     }
 
@@ -100,11 +112,15 @@ class Login extends Component {
                                                     </div>
                                                     <div class="login_find">
                                                         <span>
-                                                            <input type="checkbox" id="saveId" name="saveId" value="Y" /><label for="saveId" class="Lang-LBL5024">Lưu ID</label></span>
-
+                                                            <label for="saveId" class="Lang-LBL5024"></label>
+                                                        </span>
                                                         <input onClick={this.login} type="button" class="btn_login Lang-LBL0005" value="Đăng nhập" id="btnMember" style={{ cursor: 'pointer' }} title="login" />
-                                                        <span class="no_bg"><a href="javascript:void(0);" target="_blank" title="Tìm ID Đã mở cửa sổ mới" id="aFindId" class="Lang-LBL5025">Tìm ID</a></span>
-                                                        <span><a href="javascript:void(0);" target="_blank" title="Tìm mật khẩu Đã mở cửa sổ mới" id="aFindPassword" class="Lang-LBL5026">Tìm mật khẩu</a></span>
+                                                        <Link to="/forget-pasword">
+                                                            <span>
+                                                                <input type="checkbox" id="saveId" name="saveId" value="Y" style={{ marginRight: '4px' }}/>
+                                                                <a href="javascript:void(0);" target="_blank" title="Tìm mật khẩu Đã mở cửa sổ mới" id="aFindPassword" class="Lang-LBL5026">Tìm mật khẩu</a>
+                                                            </span>
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,6 +144,6 @@ class Login extends Component {
     }
 }
 
-export default connect(function(state){
-    return { rdcUser : state.rdcUser }
-}) (Login);
+export default connect(function (state) {
+    return { rdcUser: state.rdcUser }
+})(Login);

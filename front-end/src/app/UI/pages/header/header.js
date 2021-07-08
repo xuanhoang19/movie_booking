@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { actFetchUsersLoginRequest } from '../../../actions/actions';
+import { actFetchUsersLoginRequest, actUpdateStateUserLogoutRequest } from '../../../actions/actions';
 import '../../css/header.sass';
 import {connect} from 'react-redux';
 
@@ -14,6 +14,7 @@ class Header extends Component {
             isUserLogin: false,
         }
         this.userLogin = this.getUserLogin.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     componentDidMount() {
@@ -27,6 +28,11 @@ class Header extends Component {
     getUserLogin() {
         var {dispatch} = this.props;
         dispatch(actFetchUsersLoginRequest());
+    }
+
+    logout() {
+        var {dispatch} = this.props;
+        dispatch(actUpdateStateUserLogoutRequest());
     }
 
     onTabMenu = (tab) => {
@@ -79,8 +85,9 @@ class Header extends Component {
                                                     {this.props.rdcUser.name}
                                                 </a>
                                             </Link>
-                                            <Link to="/logout">
-                                                <a id="lbtnLogout" title="Đăng xuất" href="#">Đăng xuất</a>
+                                            <Link to="/">
+                                                <a id="lbtnLogout" title="Đăng xuất" href="#"
+                                                onClick={this.logout} >Đăng xuất</a>
                                             </Link>
                                         </div>
                                     ) : (

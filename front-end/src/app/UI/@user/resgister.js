@@ -31,7 +31,9 @@ export default class Resgister extends Component {
             };
 
             SignUp(model).then(res => {
-                toastr.success("Đăng ký thành công.")
+                toastr.success("Thành công, nhập code để xác thực.");
+                sessionStorage.setItem('gmail', this.state.usergmail);
+                sessionStorage.setItem('type', 'registeraccount');
                 this.setState({redirectToReferrer : true});
             }).catch(error => { 
                 var message = "Đã xảy ra lỗi, chưa thể xác định.";
@@ -52,7 +54,7 @@ export default class Resgister extends Component {
 
     render() {
         if (this.state.redirectToReferrer) {
-            return (<Redirect to={'/login'} />)
+            return (<Redirect to={'/code'} />)
         }
 
         return (

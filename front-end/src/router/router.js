@@ -14,6 +14,8 @@ import HeaderAdmin from "../app/UI/@admin/header/header_admin";
 import NavAdmin from "../app/UI/@admin/nav/nav_admin";
 import Header from "../app/UI/pages/header/header";
 import Footer from "../app/UI/pages/footer/footer";
+import CodeVerification from "../app/UI/@user/codeverification";
+import ForgetPassword from "../app/UI/@user/forgetPasword";
 
 export default class RouterURL extends Component {
     render() {
@@ -37,6 +39,8 @@ export default class RouterURL extends Component {
                         <Switch>
                             <Route exact path="/" component={Home} />
                             <Route path="/login" component={Login} />
+                            <Route path="/code" component={CodeVerification} />
+                            <Route path="/forget-pasword" component={ForgetPassword} />
                             <Route path="/resgister" component={Resgister} />
                             <Route path="/gift-shop" component={GiftShop} />
                             <Route path="/film" component={HomeFilm} />

@@ -11,6 +11,8 @@ var rdcUser = (state = initialState, action) => {
         case actionType.UPDATE_STATE_USER_LOGIN: 
             state = action.user;
             return state;
+        case actionType.UPDATE_STATE_USER_LOGOUT:
+            state = action.user;
         default:
             return state;
     }
